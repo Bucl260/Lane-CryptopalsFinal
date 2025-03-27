@@ -7,11 +7,13 @@ def hex_to_base64(hex_string):
         chunk = byte_data[i:i+3]
         binary_str = ''.join(f'{byte:08b}' for byte in chunk)
 
-        while len(binary_str) % 6 != 0:
-            binary_str += '0'
+        binary_str = binary_str.ljust((len(binary_str) + 5) // 6 * 6, '0')
 
         for j in range(0, len(binary_str), 6):
             index = int(binary_str[j:j+6], 2)
             base64_string += base64_chars[index]
+        
+   padding_length = (3 - len(byte_data) % 3) % 3
+   base64_string += '=' * padding_length
         
    return base64_string
