@@ -1,5 +1,9 @@
 def hex_to_base64(hex_string):
-   byte_data = bytes.fromhex(hex_string)
+   try:
+       byte_data = bytes.fromhex(hex_string)
+   except ValueError:
+       raise ValueError("Invalid Input")
+       
    base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
    base64_string = []
 
